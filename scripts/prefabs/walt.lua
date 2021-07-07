@@ -87,6 +87,23 @@ local master_postinit = function(inst)
 	inst.OnLoad = onload
     inst.OnNewSpawn = onload
 
+    local _Equip = inst.components.inventory.Equip
+
+    inst.components.inventory.Equip = function(self, item, old_to_active)
+      if not item or not item.components.equippable or not item:IsValid() then
+        return
+      end
+
+      if item.components.equippable.equipslot == EQUIPSLOTS.HEAD then
+        self:DropItem(item)
+        self:GiveItem(item)
+        if inst and inst.components.talker then
+            inst.components.talker:Say("Hats hurt my ears! I don't like pain!")
+        end
+        return
+      end
+      return _Equip(self, item, old_to_active)
+    end
 end
 
 return MakePlayerCharacter("walt", prefabs, assets, common_postinit, master_postinit, prefabs)
