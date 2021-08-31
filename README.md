@@ -3,6 +3,13 @@
 
 Cat character mod for Don't Starve Together
 
+---
+**NOTE**
+
+This mod is no longer being developed because DST modding is trash
+
+---
+
 ## Changelog
 
 ### 1.2.7
